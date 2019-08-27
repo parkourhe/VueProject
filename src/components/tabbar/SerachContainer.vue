@@ -1,5 +1,6 @@
 <template>
-	<h1>注册组件</h1>
+	<div>搜索页面</div>
+
 </template>
 <script></script>
 <style></style>

@@ -1,5 +1,7 @@
 <template>
-		<h1>登陆组件</h1>
+		<div>
+			<h1>购物页面</h1>
+		</div>
 
 </template>
 <script></script>

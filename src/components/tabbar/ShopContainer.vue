@@ -1,6 +1,9 @@
 <template>
-	
-	<h1>产品列表</h1>
+		<div>
+			<h1>购物页面</h1>
+
+		</div>
+
 </template>
 <script></script>
 <style></style>

@@ -35,7 +35,7 @@ module.exports={
 			{test:/.css$/,use:['style-loader','css-loader']},
 			{test:/.less$/,use:['style-loader','css-loader','less-loader']},
 			{test:/.js$/,use:'babel-loader',exclude:/node_modules/},
-			{test:/.(jpg|jpeg|gif)/,use:'url-loader?limit=512000'},
+			{test:/.(jpg|jpeg|gif|png)/,use:'url-loader?limit=512000'},
 			{test:/.(eot|svg|ttf|woff|woff2|otf)/,use:'url-loader'}
 
 		]
