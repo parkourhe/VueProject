@@ -1,11 +1,15 @@
 <template>
 	
 	<div class="App">
-		<mt-header fixed title="固定在顶部"></mt-header>
+		<mt-header fixed title="固定在顶部">
+			<router-link to=''  slot="left">
+				<mt-button icon="back" @click="back">返回</mt-button>
+			</router-link>	
+		</mt-header>
 
-		<transition>
+		<transition mode="out-in">
 
-					<router-view></router-view>
+			<router-view></router-view>
 
 		</transition>
 
@@ -24,7 +28,7 @@
 			</router-link>
 			<router-link class="mui-tab-item" to="/serach">
 				<span class="mui-icon mui-icon-search"></span>
-				<span class="mui-tab-label">设置</span>
+				<span class="mui-tab-label">搜索</span>
 			</router-link>
 		</nav>
 	</div>
@@ -34,41 +38,58 @@
 	
 </template>
 <script>
-	
+	export default{
+		data(){
+			return {}
+		},
+		methods:{
+
+			back(){
+
+				this.$router.back(-1)
+				
+			}
+
+		}
+
+
+
+	}
 
 </script>
 <style lang="less">
-	body{
-		padding: 0;
-		margin: 0;
-		
-	}
-	.App{
-		padding-top: 40px;
-		
-		overflow-x: hidden;
-	}
+body{
+	padding: 0;
+	margin: 0;
 
-	.v-enter{
-		opacity: 1;
-		transform:translateX(100%)	
+}
+.App{
+	padding-top: 40px;
+	padding-bottom: 50px;
 
-	}
+	overflow-x: hidden;
+}
 
-	.v-leave-to{
-		opacity:0;
-		transform:translateX(-100%);
-		position: absolute;
+.v-enter{
+	opacity: 1;
+	transform:translateX(100%)	
 
-	}
+}
 
+.v-leave-to{
+	opacity:0;
+	transform:translateX(-100%);
+	position: absolute;
 
-	.v-enter-active,
-	.v-leave-active{
-		
-		transition:all 0.5s ease;
+}
 
 
-	}
-	
+.v-enter-active,
+.v-leave-active{
+
+	transition:all 0.2s ease;
+
+
+}
+
 </style> 
