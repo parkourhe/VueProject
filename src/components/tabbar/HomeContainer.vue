@@ -57,7 +57,9 @@
 
 			getData(){
 
-				this.$http.get('http://127.0.0.1:3001/data').then(res=>{
+
+				this.$http.get('http://192.168.2.108:4000/Imglist').then(res=>{
+
 
 					if (res.status!==200) {
 						Toast('获取数据错误')

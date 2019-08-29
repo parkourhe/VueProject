@@ -37,7 +37,7 @@
 
 			getList(){
 
-				this.$http.get('http://127.0.0.1:3001/newList').then(res=>{
+				this.$http.get('newList').then(res=>{
 					if (res.body.status!==0) {
 						Toast("读取失败")
 					}

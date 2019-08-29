@@ -23,7 +23,7 @@ Vue.use(VueRouter)
 
 Vue.use(VueResource)
 
-Vue.http.options.root = ''
+Vue.http.options.root = 'http://192.168.2.108:3001'
 
 
 Vue.component(Header.name,Header)

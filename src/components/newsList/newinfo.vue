@@ -10,7 +10,9 @@
 
 		<div class="content" v-html="list.content"></div>
 
-		<comment-box></comment-box>
+		<comment-box :id="id"></comment-box>
+
+	
 		
 	</div>
 	
@@ -34,7 +36,7 @@
 
 			getNewInfo(){
 
-				this.$http.get(`http://127.0.0.1:3001/${this.id}`).then(res=>{
+				this.$http.get(`${this.id}`).then(res=>{
 
 					if (res.body.status!==0) {
 							
@@ -45,11 +47,11 @@
 
 					this.list = res.body.messages
 
-					console.log(this.list);
 					
 				})
 
 			}
+
 
 		},
 
@@ -64,8 +66,6 @@
 			"comment-box" : comment
 
 		}
-
-
 	}	
 
 
@@ -74,15 +74,21 @@
 		
 		.newInfo{
 			padding: 0px 16px;
+
 			h3{
 				text-align: center;
 			}
 			.newInfo-p{
 					display: flex;
 					justify-content:space-between;
+					
 
 			}
+			.content{
+				margin-bottom: 24px;
+			}
 
+			
 		}
 	
 
