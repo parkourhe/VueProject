@@ -2,13 +2,13 @@
 	
 	<div class="commentCom">
 		
-		<form action="" class="commentCommit">
-			<h4>发表评论</h4>
-			<hr>
-			<textarea placeholder="请输入评论" rows="5"></textarea>
 
-			<mt-button type="primary" size='large'>提交</mt-button>
-		</form>
+		<h4>发表评论</h4>
+		<hr>
+		<textarea placeholder="请输入评论" rows="5" v-model="content"></textarea>
+
+		<mt-button type="primary" size='large' @click="commitCon">提交</mt-button>
+		
 
 		<div class="commentList">
 			<div class="commentItem" v-for="(item,i) in commentList ">
@@ -21,7 +21,6 @@
 				<div class="commentItem-body">
 					{{item.content}}
 				</div>	
-					
 
 			</div>
 
@@ -39,7 +38,8 @@
 
 			return{
 				pageIndex:0,
-				commentList:[]
+				commentList:[],
+				content:''
 
 			}
 
@@ -74,8 +74,42 @@
 
 				this.getComment()
 
+			},
+			commitCon(){
+				
+				if (!this.content.trim()) {
+					
+					return Toast("请添加评论")
+
+				}
+
+				if (this.content.length<5) {
+					
+					return Toast("请多写一点")
+				}
+
+				this.$http.post("http://192.168.2.108:4000/comment?id="+this.$route.params.id,{
+					"content":this.content
+				}).then((result,reject)=>{
+					if (reject) {
+						 return console.log(reject);
+					}
+
+					if (result.status!==200) {
+						return Toast("提交失败，请稍后再试试")
+					}
+
+					console.log(result);
+					Toast("提交成功")
 
 
+					let newCom = {"add_time":Date.now(),"content":this.content,"user_name":"parkourhe"}
+
+					this.commentList.unshift(newCom)
+
+
+
+				})
 
 
 			}
@@ -89,7 +123,11 @@
 			this.getComment()
 			console.log(this.id);
 
-		}
+			console.log(this.$route.params);
+
+		},
+
+		
 
 
 	}
@@ -126,9 +164,9 @@
 
 	}
 	[data-v-6d8edfc6]{
-	margin-bottom:20px;
+		margin-bottom:20px;
 
-}
+	}
 }
 
 

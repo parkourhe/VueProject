@@ -8,6 +8,7 @@ import SerachCon from './components/tabbar/SerachContainer.vue'
 import ShopCon from './components/tabbar/ShopContainer.vue'
 import News from './components/newsList/news.vue'
 import NewsInfo from './components/newsList/newinfo.vue'
+import Photo from './components/PhotoShare/photo.vue'
 
 
 let router = new VueRouter({
@@ -19,7 +20,8 @@ let router = new VueRouter({
 		{path:'/shoping',component:ShopCon},
 		{path:'/serach',component:SerachCon},
 		{path:'/home/news',component:News},
-		{path:'/home/news/info/:id',component:NewsInfo}
+		{path:'/home/news/info/:id',component:NewsInfo},
+		{path:'/home/photo',component:Photo}
 
 
 	],
