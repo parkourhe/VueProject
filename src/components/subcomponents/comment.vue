@@ -31,8 +31,9 @@
 
 </template>
 <script>
-	
-	import {Toast} from "mint-ui"
+	import { Toast } from 'mint-ui'
+
+
 	export default {
 		data(){
 
@@ -48,11 +49,15 @@
 
 			getComment(){
 
+				
+			
+
 				this.$http.get('http://192.168.2.108:4000/comment?id='+this.id+"&pageIndex="+this.pageIndex).then(res=>{
 
 					if (res.status!==200) {
 						
-						return Toast('获取新闻消息失败')
+						
+						return this.$toast('获取新闻消息失败')
 
 					}
 
@@ -60,7 +65,8 @@
 
 					if (res.body.length==0) {
 						
-						Toast("没有了")
+
+						return this.$toast("没有了")
 
 					}
 
@@ -76,16 +82,22 @@
 
 			},
 			commitCon(){
+
+				console.log(Toast);
+
+
 				
 				if (!this.content.trim()) {
 					
-					return Toast("请添加评论")
+
+					return this.$toast("请添加评论")
+
 
 				}
 
 				if (this.content.length<5) {
 					
-					return Toast("请多写一点")
+					return this.$toast("请多写一点")
 				}
 
 				this.$http.post("http://192.168.2.108:4000/comment?id="+this.$route.params.id,{
@@ -96,11 +108,11 @@
 					}
 
 					if (result.status!==200) {
-						return Toast("提交失败，请稍后再试试")
+						return this.$toast("提交失败，请稍后再试试")
 					}
 
 					console.log(result);
-					Toast("提交成功")
+					this.$toast("提交成功")
 
 
 					let newCom = {"add_time":Date.now(),"content":this.content,"user_name":"parkourhe"}

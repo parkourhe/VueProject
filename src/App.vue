@@ -1,7 +1,7 @@
 <template>
 	
 	<div class="App">
-		<mt-header fixed title="固定在顶部">
+		<mt-header fixed title="固定在顶部" class="appHeader">
 			<router-link to=''  slot="left" style="color: #fff !important">
 				<mt-button icon="back" @click="back">返回</mt-button>
 			</router-link>	
@@ -125,5 +125,14 @@ body{
 	display: block;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+.appHeader{
+	z-index: 999;
+}
+
+
+.mui-bar .mui-bar-tab{
+	z-index:999;
+
 }
 </style> 

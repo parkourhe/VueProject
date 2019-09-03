@@ -21,7 +21,7 @@
 <script>
 	import comment from '../subcomponents/comment.vue'
 	
-	// import {Toast} from "mint-ui"
+	import {Toast} from "mint-ui"
 
 	export default{
 
@@ -38,8 +38,9 @@
 
 				this.$http.get(`${this.id}`).then(res=>{
 
+					
 					if (res.body.status!==0) {
-							
+						
 						Toast("获取新闻消息失败")
 
 						return  

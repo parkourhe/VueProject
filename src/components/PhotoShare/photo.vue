@@ -12,10 +12,15 @@
 
 		</div>
 
-		<ul>
-			<li v-for="item in imgList" :key="item._id">
+		<ul class="photo-list">
+			<router-link v-for="item in imgList" :key="item._id" :to="'/home/photo/photoList/'+item._id" tag="li">
 				<img v-lazy="item.img_url">
-			</li>
+				<div class="info">
+					<h3 class="info-title">{{item.title}}</h3>
+					<div class="info-body">{{item.zhaiyao}}</div>
+
+				</div>
+			</router-link>
 		</ul>
 
 	</div>
@@ -61,9 +66,6 @@
 					this.cateGory.unshift({_id:'0',event_id:0,title:"全部"})
 
 
-
-					
-
 				})
 
 			},
@@ -72,7 +74,7 @@
 
 			getImagesList(id){
 
-
+				this.id = id
 
 				this.$http.get('http://192.168.2.108:4000/getImage?id='+id).then(result=>{
 
@@ -106,10 +108,6 @@
 
 		}
 
-
-
-
-
 	}
 
 	
@@ -117,38 +115,58 @@
 
 </script>
 <style lang="less" scoped>
-.photo-container{
-	ul{
-		padding:20px;
-	}
-	
+
+.photo-list{
+	text-align: center;
+	padding:10px;
+	padding-bottom:0;
 	li{
-
 		list-style: none;
+		background-color:#ccc;
+		margin-bottom:10px;
+		box-shadow: 0 0 6px #333;
+		position: relative;
+		text-align:left;
+		.info{
+			width: 100%;
+			padding: 5px;
+			position:absolute;
+			bottom: 0;
+			max-height: 100px;
+			background-color: rgba(0,0,0,0.5);
+
+			.info-title{
+				margin:0;
+				font-size:20px;
+				color: #fff
+			}
+			.info-body{
+				width: 100%;
+				font-size:14px;
+				color: skyblue
+			}
+
+		}
+
 
 	}
-
+	img{
+		
+		width: 100%;
+		height: auto;
+		vertical-align:middle;
+	
+	}
 
 	img[lazy=loading] {
-		width: 100%;
-		height: 100%;
+		width: 40px;
+		height: 300px;
 		margin: auto;
 	}
-
-	li[data-v-735cf6a0]{
-		width: 100%;
-		height: 200px;
-
-	}
 	
-	img[data-v-735cf6a0]{
-		width: 100%;
-		height: 100%;
-
-	}
-
 
 }
+
 
 
 

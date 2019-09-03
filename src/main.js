@@ -13,14 +13,17 @@ import router from './router.js'
 
 // import { Header, Swipe, SwipeItem ,Button  } from 'mint-ui'
 
+
+
 import Mint from 'mint-ui'
 
 import VueResource from 'vue-resource'
 
 import moment from "moment"
 
-
 Vue.use(Mint)
+
+import '../node_modules/mint-ui/lib/style.css'
 
 Vue.use(VueRouter)
 
