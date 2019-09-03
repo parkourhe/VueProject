@@ -42,5 +42,7 @@
     "webpack-dev-server": "^3.8.0",
     "webpack-html-plugin": "^0.1.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "vue-preview": "^1.1.3"
+  }
 }

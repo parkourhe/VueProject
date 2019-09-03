@@ -11,15 +11,27 @@ import VueRouter from 'vue-router'
 // 自己的路由模块
 import router from './router.js'
 
+import VuePreview  from 'vue-preview'
+
 // import { Header, Swipe, SwipeItem ,Button  } from 'mint-ui'
-
-
 
 import Mint from 'mint-ui'
 
 import VueResource from 'vue-resource'
 
 import moment from "moment"
+
+
+Vue.use(VuePreview, {
+  mainClass: 'pswp--minimal--dark',
+  barsSize: {top: 0, bottom: 0, left:0,right:0},
+  captionEl: false,
+  fullscreenEl: false,
+  shareEl: true,
+  bgOpacity: 0.85,
+  tapToClose: true,
+  tapToToggleControls: false
+})
 
 Vue.use(Mint)
 
