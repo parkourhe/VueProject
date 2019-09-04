@@ -3,7 +3,7 @@
 	<div class="App">
 		<mt-header fixed title="固定在顶部" class="appHeader">
 			<router-link to=''  slot="left" style="color: #fff !important">
-				<mt-button icon="back" @click="back">返回</mt-button>
+				<mt-button icon="back" @click="back" v-if="isHome">返回</mt-button>
 			</router-link>	
 		</mt-header>
 
@@ -40,17 +40,42 @@
 <script>
 	export default{
 		data(){
-			return {}
+			return {
+				isHome: true
+			}
 		},
 		methods:{
 
 			back(){
 
-				this.$router.back(-1)
+				this.$router.go(-1)
 				
+				this.isHomeFn()
+				
+			},
+
+			isHomeFn(){
+
+				setTimeout(()=>{
+					if (this.$route.path=='/home') {
+						this.isHome = false
+					}else {
+						this.isHome = true
+					}
+
+					console.log('test');
+
+				},100)
+
+
 			}
 
+		},
+
+		updated(){
+			this.isHomeFn()
 		}
+		
 
 
 

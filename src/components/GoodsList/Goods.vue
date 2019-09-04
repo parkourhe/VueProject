@@ -1,10 +1,10 @@
 <template>
 	<div class="Goods">
-		<div class="Goods-item" v-for="item in goodsList" :key="item._id">
+		<div class="Goods-item" v-for="item in goodsList" :key="item._id" @click="goodsInfo(item._id)">
 			<div class="Goods-img">
 				<img :src="item.img_url" alt="">
 			</div>
-			<div class="Goods-body">
+			<div class="Goods-body" >
 				<h3 class="Goods-title">
 					{{item.title}}
 				</h3>
@@ -59,8 +59,12 @@
 				this.pageIndex++
 				this.getGoods()
 
-			}
+			},
+			goodsInfo(id){
+				// name是命名式导航2
+				this.$router.push({name:'goodsInfo',params:{id}})
 
+			}
 
 		},
 
