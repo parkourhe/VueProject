@@ -17,6 +17,8 @@ import VuePreview  from 'vue-preview'
 
 import Mint from 'mint-ui'
 
+import Vuex from 'vuex'
+
 import VueResource from 'vue-resource'
 
 import moment from "moment"
@@ -41,7 +43,85 @@ Vue.use(VueRouter)
 
 Vue.use(VueResource)
 
+Vue.use(Vuex)
+
 Vue.http.options.root = 'http://192.168.2.108:3001'
+
+  
+
+
+// 每次进入页面前，会先初始化car参数为空，所以要在car设置为空前拿到缓存
+
+var car = JSON.parse(localStorage.getItem('car') || '[]')
+
+// 实例化一个Vuex公共数据管理
+var Store = new Vuex.Store({
+
+  state:{
+
+      car: car
+
+  },
+
+  mutations:{
+
+    // 公共状态的函数第一个参数是state
+      addShopCar(state,data){
+    
+          // 假设购物没有这个物品
+          var flag = false
+
+          state.car.some(item=>{
+
+              if (item.id== data.id ) {
+                  
+                  item.count += data.count  
+
+                  flag = true    
+
+              }
+
+          })
+
+          if (!flag) {
+              state.car.push(data)      
+                      
+         }
+
+
+         let Jcar = JSON.stringify(state.car)
+
+         localStorage.setItem('car',Jcar)
+
+      }
+
+
+  },
+
+  getters:{
+
+      getTotalCount : state=>{
+
+          let totalCount = 0
+
+          state.car.forEach(item=>{
+
+              totalCount += item.count
+
+          })
+
+          return totalCount
+
+      }  
+
+
+  }
+
+
+
+
+})
+
 
 
 
@@ -65,6 +145,7 @@ Vue.filter('datafilter',function (date,pattern="YYYY-MM-DD HH:mm:ss") {
 var vm = new Vue({
 	el:'#app',
 	router,
-	render: c=>c(App)
+	render: c=>c(App),
+  store:Store
 
 })
