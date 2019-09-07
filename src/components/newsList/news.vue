@@ -37,8 +37,9 @@
 			getList(){
 
 				this.$http.get('newList').then(res=>{
+					
 					if (res.body.status!==0) {
-						Toast("读取失败")
+						this.$toast("读取失败")
 					}
 
 					this.newList = res.body.messages
@@ -52,7 +53,7 @@
 		},
 		created(){
 
-			this.getList()
+			this.getList()	
 
 
 		}

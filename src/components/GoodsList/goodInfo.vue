@@ -140,6 +140,8 @@
 
 				car.count = this.selectNum
 
+				car.selectd = true
+
 				this.$store.commit('addShopCar',car)
 				
 
@@ -186,7 +188,6 @@
 					
 
 				}
-
 
 
 			},

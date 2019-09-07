@@ -93,6 +93,62 @@ var Store = new Vuex.Store({
 
          localStorage.setItem('car',Jcar)
 
+      },
+
+      updateShopCar(state,data){
+
+      
+        state.car.some(item=>{
+
+              if (item.id == data.id) {
+                
+                  item.count = data.count
+
+                  return true
+              }
+              
+
+
+        })
+
+    
+
+        // localStorage.setItem('car',JSON.stringify(car))
+
+      },
+      removeShopCar(state,data){
+
+        state.car.some((item,i)=>{
+
+            if (item.id==data.id) {
+                 
+                 state.car.splice(i,1) 
+
+                 return true
+
+            }
+
+
+        })
+
+        localStorage.setItem('car',JSON.stringify(car))
+
+      },
+      updateSelect(state,data){
+
+        state.car.some(item=>{
+          if (item.id==data.id) {
+
+            item.selectd = data.selectd
+
+            return true
+          }
+
+        })
+
+        localStorage.setItem('car',JSON.stringify(car))
+
+
       }
 
 
@@ -100,20 +156,75 @@ var Store = new Vuex.Store({
 
   getters:{
 
-      getTotalCount : state=>{
 
-          let totalCount = 0
+    getTotalCount(state){
+      let totalCount = 0
 
-          state.car.forEach(item=>{
+      state.car.forEach(item=>{
 
-              totalCount += item.count
+       totalCount += parseInt(item.count)
 
-          })
+      })
 
-          return totalCount
+      return totalCount
 
-      }  
+    },
 
+    getCount(state){
+
+        let  obj  = {};
+
+        state.car.forEach(item=>{
+
+            obj[item.id] = item.count 
+
+        })
+
+        return obj
+    },
+
+     getSelectdStatus(state){
+
+        let obj = {}
+
+        state.car.forEach(item=>{
+
+            obj[item.id] = item.selectd
+
+        })
+
+        console.log(obj);
+        return obj
+
+
+      },
+      getTotalPrice(state){
+
+        let obj = {
+          count : 0,
+          totalPrice : 0
+
+        }
+
+        state.car.forEach(item=>{
+
+
+
+            if (item.selectd) {
+                
+                obj.count += parseInt(item.count)
+
+                obj.totalPrice += parseInt(item.sell_price) * parseInt(item.count)
+
+
+            }
+
+
+        })
+
+        return obj
+
+      }     
 
   }
 

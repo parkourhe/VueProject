@@ -1,7 +1,7 @@
 <template>
 	
 	<div class="App">
-		<mt-header fixed title="固定在顶部" class="appHeader">
+		<mt-header fixed title="VueApp" class="appHeader">
 			<router-link to=''  slot="left" style="color: #fff !important">
 				<mt-button icon="back" @click="back" v-if="isHome">返回</mt-button>
 			</router-link>	
@@ -41,7 +41,7 @@
 	export default{
 		data(){
 			return {
-				isHome: true
+				isHome: false
 			}
 		},
 		methods:{
@@ -49,31 +49,33 @@
 			back(){
 
 				this.$router.go(-1)
-				
-				this.isHomeFn()
-				
-			},
-
-			isHomeFn(){
-
-				setTimeout(()=>{
-					if (this.$route.path=='/home') {
-						this.isHome = false
-					}else {
-						this.isHome = true
-					}
-
-					console.log('test');
-
-				},100)
-
-
+								
 			}
 
 		},
+		created(){
 
-		updated(){
-			this.isHomeFn()
+			this.$route.path == '/home' ? this.isHome=false : this.isHome=true
+
+
+		},
+
+		
+		watch:{
+
+			// 这里必须这样写
+
+			"$route.path": function(newValue,oldValue){
+
+				if (newValue=='/home') {
+					
+					this.isHome = false
+				}else {
+					this.isHome = true
+				}
+				
+			}
+
 		}
 		
 
